@@ -1,5 +1,8 @@
 # C2-10-FE-votes-HW
-C2.10 FE votes HW - SSE, HTTPrequest, bootstrap
+
+C2.10 FE votes HW - SSE, HTTPrequest, bootstrap.
+Подключен к BE  https://sf-pyw.mosyag.in
 Голосование - на вкладке Голосование.
 Результаты - на вкладке Результаты.
 Чтобы проверить - запомните значения голосов до. Проголосуйте и посмотрите после.
+
