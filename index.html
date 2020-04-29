@@ -1,0 +1,87 @@
+<!-- 
+Голосование за любимый тип домашнего животного из предлагаемых трёх: кошки, собаки и попугаи.
+
+У нас есть backend-сервер с тремя url, принимающими POST-запросы с пустым телом:
+
+/sse/vote/cats — увеличивает на 1 число голосов за "коты"
+/sse/vote/dogs — увеличивает на 1 число голосов за "собаки"
+/sse/vote/parrots — увеличивает на 1 число голосов за "попугаи"
+
+Также сервер предоставляет GET-запрос со статистикой голосования
+/sse/vote/stats — это SSE-стрим с текущими результатами голосования
+
+Для вашего удобства мы подняли backend-сервер по адресу https://sf-pyw.mosyag.in, использующий эти пути. 
+База данных сервиса сбрасывается раз в день в районе полудня.
+
+Задача и детали
+Ваша задача состоит в том, чтобы написать фронт для двух задач:
+
+1. Голосование: это форма или просто три кнопки, отправляющая запросы на сервер за выбранную фракцию
+2. Отображение результатов голосования: это три прогресс-бара как из C2.8, отображающие текущие результаты голосования.
+
+В рамках задания старайтесь использовать разные страницы для отображения и для голосования. 
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>C2.10 HW FE votes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Bootstrap 4 - Пример создания табов</title>
+
+    <!-- Подключаем Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" crossorigin="anonymous">
+</head>
+<!-- шаблон отсюда: https://itchief.ru/examples/lab.php?topic=bootstrap&file=b4-create-tab -->
+<body class="p-5">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#section-1" role="tab" aria-controls="section-1"
+        aria-selected="true">Голосование</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#section-2" role="tab" aria-controls="section-2"
+        aria-selected="false">Результаты</a>
+    </li>
+
+    </ul>
+    <div class="tab-content my-3">
+    <div class="tab-pane fade show active" id="section-1" role="tabpanel" aria-labelledby="home-tab">
+        <h1>Голосование ...</h1>
+        <button id="cats" class="btn btn-primary">Кошки</button>
+        <button id="dogs" class="btn btn-primary">Собаки</button>
+        <button id="parrots" class="btn btn-primary">Попугаи</button>
+    </div>
+    <div class="tab-pane fade" id="section-2" role="tabpanel" aria-labelledby="profile-tab">
+        <h1>Результаты ...</h1>
+        <h2>Кошки:</h2>
+        <div class="progress"> 
+            <div id="progress-bar-cats" class="progress-bar" role="progressbar" style="width: 0%"></div>
+        </div>   
+        <h2>Собаки:</h2>
+        <div class="progress"> 
+            <div id="progress-bar-dogs" class="progress-bar" role="progressbar" style="width: 0%"></div>
+        </div>   
+        <h2>Попугаи:</h2>
+        <div class="progress"> 
+            <div id="progress-bar-parrots" class="progress-bar" role="progressbar" style="width: 0%"></div>
+        </div>   
+        <p></p>
+    </div>
+  
+    <!-- Подключаем jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      
+    <!-- Подключаем Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <!-- Голосование -->
+    <script src="./js/voting.js"></script>    
+    
+    <!-- Отображение результатов голосования -->
+    <script src="./js/progress.js"></script>    
+    
+</body>
+</html>
